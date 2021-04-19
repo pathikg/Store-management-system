@@ -367,6 +367,7 @@ def get_items():
 
 
 def clear_all():
+    global name_e, stock_e, cp_e, sp_e, vendor_e, vendor_phone_e 
     num = id + 1
     name_e.delete(0, END)
     stock_e.delete(0, END)
