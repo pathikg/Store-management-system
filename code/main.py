@@ -341,7 +341,7 @@ def get_items():
     # get from entries
     global cp2_e, sp2_e
     name = name2_e.get()
-    stock = stock_e.get()
+    stock = stock2_e.get()
     cp = cp2_e.get()
     sp = sp2_e.get()
     vendor = vendor_e.get()
@@ -367,10 +367,10 @@ def get_items():
 
 
 def clear_all():
-    global name2_e, stock_e, cp2_e, sp2_e, vendor_e, vendor_phone_e 
+    global name2_e, stock2_e, cp2_e, sp2_e, vendor_e, vendor_phone_e
     num = id + 1
     name2_e.delete(0, END)
-    stock_e.delete(0, END)
+    stock2_e.delete(0, END)
     cp2_e.delete(0, END)
     sp2_e.delete(0, END)
     vendor_e.delete(0, END)
@@ -411,8 +411,8 @@ id_l.place(x=0, y=370)
 name2_e = Entry(frame2, width=25, font=('arial 18 bold'))
 name2_e.place(x=380, y=70)
 
-stock_e = Entry(frame2, width=25, font=('arial 18 bold'))
-stock_e.place(x=380, y=120)
+stock2_e = Entry(frame2, width=25, font=('arial 18 bold'))
+stock2_e.place(x=380, y=120)
 
 cp2_e = Entry(frame2, width=25, font=('arial 18 bold'))
 cp2_e.place(x=380, y=170)
@@ -521,7 +521,7 @@ def update():
     Mysp = int(totalsp_e.get())
     # u6 = (int(totalcp_e.get()) / int(cp_e.get()) ) * int(sp_e.get())
     u6 = (Mysp / (int(totalcp_e.get()) / int(cp3_e.get()))) * ((int(totalcp_e.get()) /
-                                                               int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
+                                                                int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
     u7 = vendor3_e.get()
     u8 = vendor_phone3_e.get()
 
