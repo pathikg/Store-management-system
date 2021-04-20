@@ -339,18 +339,18 @@ add_btn.place(x=150, y=690)
 # functions in frame 2
 def get_items():
     # get from entries
-    global cp_e, sp_e
-    name = name_e.get()
+    global cp2_e, sp2_e
+    name = name2_e.get()
     stock = stock_e.get()
-    cp = cp_e.get()
-    sp = sp_e.get()
+    cp = cp2_e.get()
+    sp = sp2_e.get()
     vendor = vendor_e.get()
     vendor_phone = vendor_phone_e.get()
 
     # dynamic entries
-    totalcp = float(cp) * int(stock)
-    totalsp = float(sp) * int(stock)
-    assumed_profit = float(totalsp - totalcp)
+    totalcp = int(cp) * int(stock)
+    totalsp = int(sp) * int(stock)
+    assumed_profit = int(totalsp - totalcp)
 
     if name == '' or stock == '' or cp == '' or sp == '':
         tkinter.messagebox.showinfo("Error", "Please Fill all the entries.")
@@ -367,12 +367,12 @@ def get_items():
 
 
 def clear_all():
-    global name_e, stock_e, cp_e, sp_e, vendor_e, vendor_phone_e 
+    global name2_e, stock_e, cp2_e, sp2_e, vendor_e, vendor_phone_e 
     num = id + 1
-    name_e.delete(0, END)
+    name2_e.delete(0, END)
     stock_e.delete(0, END)
-    cp_e.delete(0, END)
-    sp_e.delete(0, END)
+    cp2_e.delete(0, END)
+    sp2_e.delete(0, END)
     vendor_e.delete(0, END)
     vendor_phone_e.delete(0, END)
 
@@ -408,17 +408,17 @@ vendor_phone_l.place(x=0, y=320)
 id_l = Label(frame2, text="Enter ID", font=('arial 18 bold'))
 id_l.place(x=0, y=370)
 # entries for the labels
-name_e = Entry(frame2, width=25, font=('arial 18 bold'))
-name_e.place(x=380, y=70)
+name2_e = Entry(frame2, width=25, font=('arial 18 bold'))
+name2_e.place(x=380, y=70)
 
 stock_e = Entry(frame2, width=25, font=('arial 18 bold'))
 stock_e.place(x=380, y=120)
 
-cp_e = Entry(frame2, width=25, font=('arial 18 bold'))
-cp_e.place(x=380, y=170)
+cp2_e = Entry(frame2, width=25, font=('arial 18 bold'))
+cp2_e.place(x=380, y=170)
 
-sp_e = Entry(frame2, width=25, font=('arial 18 bold'))
-sp_e.place(x=380, y=220)
+sp2_e = Entry(frame2, width=25, font=('arial 18 bold'))
+sp2_e.place(x=380, y=220)
 
 vendor_e = Entry(frame2, width=25, font=('arial 18 bold'))
 vendor_e.place(x=380, y=270)
@@ -464,6 +464,15 @@ update_btn.place(x=150, y=690)
 def search():
     sql = "SELECT * FROM inventory WHERE id=?"
     result = c.execute(sql, (id_leb.get(), ))
+    n1 = None  # name
+    n2 = None  # stock
+    n3 = None  # cp
+    n4 = None  # sp
+    n5 = None  # totalcp
+    n6 = None  # totalsp
+    n7 = None  # assumed_profit
+    n8 = None  # vendor
+    n9 = None  # vendor_phone
     for r in result:
         n1 = r[1]  # name
         n2 = r[2]  # stock
@@ -477,23 +486,23 @@ def search():
     conn.commit()
 
     # insert into the entries to update
-    name_e.delete(0, END)
-    name_e.insert(0, str(n1))
+    name3_e.delete(0, END)
+    name3_e.insert(0, str(n1))
 
-    stock_e.delete(0, END)
-    stock_e.insert(0, str(n2))
+    stock3_e.delete(0, END)
+    stock3_e.insert(0, str(n2))
 
-    cp_e.delete(0, END)
-    cp_e.insert(0, str(n3))
+    cp3_e.delete(0, END)
+    cp3_e.insert(0, str(n3))
 
-    sp_e.delete(0, END)
-    sp_e.insert(0, str(n4))
+    sp3_e.delete(0, END)
+    sp3_e.insert(0, str(n4))
 
-    vendor_e.delete(0, END)
-    vendor_e.insert(0, str(n8))
+    vendor3_e.delete(0, END)
+    vendor3_e.insert(0, str(n8))
 
-    vendor_phone_e.delete(0, END)
-    vendor_phone_e.insert(0, str(n9))
+    vendor_phone3_e.delete(0, END)
+    vendor_phone3_e.insert(0, str(n9))
 
     totalcp_e.delete(0, END)
     totalcp_e.insert(0, str(n5))
@@ -504,17 +513,17 @@ def search():
 
 def update():
     # get all the updated values
-    u1 = name_e.get()
-    u2 = stock_e.get()
-    u3 = cp_e.get()
-    u4 = sp_e.get()
+    u1 = name3_e.get()
+    u2 = stock3_e.get()
+    u3 = cp3_e.get()
+    u4 = sp3_e.get()
     u5 = totalcp_e.get()
     Mysp = int(totalsp_e.get())
     # u6 = (int(totalcp_e.get()) / int(cp_e.get()) ) * int(sp_e.get())
-    u6 = (Mysp / (int(totalcp_e.get()) / int(cp_e.get()))) * ((int(totalcp_e.get()) /
-                                                               int(cp_e.get())) - int(stock_e.get())) + int(sp_e.get()) * int(stock_e.get())
-    u7 = vendor_e.get()
-    u8 = vendor_phone_e.get()
+    u6 = (Mysp / (int(totalcp_e.get()) / int(cp3_e.get()))) * ((int(totalcp_e.get()) /
+                                                               int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
+    u7 = vendor3_e.get()
+    u8 = vendor_phone3_e.get()
 
     query = "UPDATE inventory SET name=?, stock=?, cp=?, sp=?, totalcp=?, totalsp=?, vendor=?, vendor_phoneno=? WHERE id=?"
     c.execute(query, (u1, u2, u3, u4, u5, u6, u7, u8, id_leb.get()))
@@ -570,17 +579,17 @@ vendor_phone_l = Label(
 vendor_phone_l.place(x=0, y=470)
 
 # entries for the labels
-name_e = Entry(frame3, width=25, font=('arial 18 bold'))
-name_e.place(x=380, y=120)
+name3_e = Entry(frame3, width=25, font=('arial 18 bold'))
+name3_e.place(x=380, y=120)
 
-stock_e = Entry(frame3, width=25, font=('arial 18 bold'))
-stock_e.place(x=380, y=170)
+stock3_e = Entry(frame3, width=25, font=('arial 18 bold'))
+stock3_e.place(x=380, y=170)
 
-cp_e = Entry(frame3, width=25, font=('arial 18 bold'))
-cp_e.place(x=380, y=220)
+cp3_e = Entry(frame3, width=25, font=('arial 18 bold'))
+cp3_e.place(x=380, y=220)
 
-sp_e = Entry(frame3, width=25, font=('arial 18 bold'))
-sp_e.place(x=380, y=270)
+sp3_e = Entry(frame3, width=25, font=('arial 18 bold'))
+sp3_e.place(x=380, y=270)
 
 totalcp_e = Entry(frame3, width=25, font=('arial 18 bold'))
 totalcp_e.place(x=380, y=320)
@@ -588,11 +597,11 @@ totalcp_e.place(x=380, y=320)
 totalsp_e = Entry(frame3, width=25, font=('arial 18 bold'))
 totalsp_e.place(x=380, y=370)
 
-vendor_e = Entry(frame3, width=25, font=('arial 18 bold'))
-vendor_e.place(x=380, y=420)
+vendor3_e = Entry(frame3, width=25, font=('arial 18 bold'))
+vendor3_e.place(x=380, y=420)
 
-vendor_phone_e = Entry(frame3, width=25, font=('arial 18 bold'))
-vendor_phone_e.place(x=380, y=470)
+vendor_phone3_e = Entry(frame3, width=25, font=('arial 18 bold'))
+vendor_phone3_e.place(x=380, y=470)
 
 # button to add to the database
 btn_add = Button(frame3, text="Update Database", width=25,
