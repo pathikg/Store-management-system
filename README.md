@@ -19,3 +19,7 @@ Python application for a store to manage the bills and handle the sales of there
 ```sh
         $ pip3 install -r requirements.txt
 ```
+
+<h4 align="center"><b>Developed with :heart: by 
+<a href="https://github.com/rushabhgandhi13">Rushabh Gandhi</a> and <a href="https://github.com/Patrickbro13">Pathik Ghugare</a></b> , 
+</h4>
