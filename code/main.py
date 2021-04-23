@@ -36,8 +36,9 @@ root.columnconfigure(0, weight=1)
 frame1 = tkinter.Frame(root)
 frame2 = tkinter.Frame(root)
 frame3 = tkinter.Frame(root)
+frame4 = tkinter.Frame(root, bg="orange")
 
-for frame in (frame1, frame2, frame3):
+for frame in (frame1, frame2, frame3, frame4):
     frame.grid(row=0, column=0, sticky='nsew')
 
 
@@ -71,6 +72,9 @@ def change_func():
 def ajax():
     global get_id, get_name, get_price, get_stock
     get_id = enteride.get()
+    get_price = 0
+    get_name = 0
+
     # get the products info with that id and fill it in the labels above
     query = "SELECT * FROM inventory WHERE id=?"
     result = c.execute(query, (get_id, ))
@@ -209,7 +213,7 @@ def generate_bill():
     total_l.configure(text="")
     change_e.delete(0, END)
     enteride.focus()
-    tkinter.messagebox.showinfo("Success", "Done everything smoothly")
+    tkinter.messagebox.showinfo("Success", "Bill has been generated")
 
 
 # frame1
@@ -405,7 +409,7 @@ vendor_phone_l = Label(
     frame2, text="Enter Vendor Phone Number", font=('arial 18 bold'))
 vendor_phone_l.place(x=0, y=320)
 
-id_l = Label(frame2, text="Enter ID", font=('arial 18 bold'))
+id_l = Label(frame2, text="Enter Vendor ID", font=('arial 18 bold'))
 id_l.place(x=0, y=370)
 # entries for the labels
 name2_e = Entry(frame2, width=25, font=('arial 18 bold'))
@@ -622,5 +626,56 @@ add_btn = Button(frame3, text="Add products",
                  height=2, bg='green', fg='white', command=lambda: show_frame(frame2))
 add_btn.place(x=150, y=690)
 
-show_frame(frame1)
+
+# --------------------------------------------Login----------------------------------------
+
+# frame 4 functions
+
+Username = "admin"
+Password = "admin"
+
+
+def auth_login(Username, Password):
+    if Username == "admin" and Password == "admin":
+        show_frame(frame1)
+    else:
+        tkinter.messagebox.showinfo(
+            "Error", "Incorrect login Credentials")
+
+
+canvas = Canvas(frame4, width=725, height=384)
+canvas.place(x=335, y=140)
+
+canvas.create_rectangle(0, 0, 725, 700, fill="orange", outline="white")
+
+heading = Label(frame4, text="Login",
+                font=('arial 40 bold'), fg='white', bg="orange")
+heading.place(x=600, y=150)
+
+Dashes = Label(frame4, text="--------------------------------------",
+               font=('arial 40 bold'), fg='white', bg="orange")
+Dashes.place(x=350, y=225)
+
+Uname_l = Label(frame4, text="Username :", font=(
+    'arial 18 bold'), fg='white', bg="orange")
+Uname_l.place(x=500, y=350)
+
+Uname_e = Entry(frame4, width=25, font=('arial 18 bold'))
+Uname_e.place(x=683, y=350)
+
+
+Passwd_l = Label(frame4, text="Password :", font=(
+    'arial 18 bold'), fg='white', bg="orange")
+Passwd_l.place(x=500, y=400)
+
+Passwd_e = Entry(frame4, show='*', width=25, font=('arial 18 bold'))
+Passwd_e.place(x=683, y=400)
+
+Login_btn = Button(frame4, text="Login", font=(
+    'arial 20'), width=7,
+    height=1, bg='orange', fg='white', command=lambda: auth_login(Uname_e.get(), Passwd_e.get()))
+Login_btn.place(x=660, y=450)
+
+
+show_frame(frame4)
 root.mainloop()
