@@ -1,6 +1,7 @@
 # import all the modules
 import matplotlib
 from tkinter import *
+from tkinter import ttk
 import sqlite3
 import tkinter.messagebox
 import datetime
@@ -72,8 +73,8 @@ def change_func():
 def ajax():
     global get_id, get_name, get_price, get_stock
     get_id = enteride.get()
-    get_price = 0
-    get_name = 0
+    get_price = "NA"
+    get_name = "Does not exist"
 
     # get the products info with that id and fill it in the labels above
     query = "SELECT * FROM inventory WHERE id=?"
@@ -250,15 +251,15 @@ enterid = Label(left, text="Enter Product's ID", font=(
     'arial 18 bold'), bg='floral white')
 enterid.place(x=0, y=80)
 
-enteride = Entry(left, width=25, font=(
+enteride = Entry(left, width=12, font=(
     'arial 18 bold'), bg='orange')
 enteride.place(x=230, y=80)
 enteride.focus()
 
 # button
 search_btn = Button(
-    left, text="Search", width=22, height=2, bg='orange', command=ajax)
-search_btn.place(x=350, y=120)
+    left, text="Search", font=('arial 10 bold'), width=15, height=1, bg='green', fg="white", activebackground='white', activeforeground='black', command=ajax)
+search_btn.place(x=400, y=80)
 
 # fill it later by the function ajax
 productname = Label(left, text="", font=(
@@ -277,6 +278,32 @@ total_l.place(x=0, y=600)
 frame1.bind("<Return>", ajax)
 frame1.bind("<Up>", add_to_cart)
 frame1.bind("<space>", generate_bill)
+
+
+# Combobox creation
+n = StringVar()
+ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
+
+products = []
+c.execute("SELECT id, name from inventory")
+
+tuples = c.fetchall()
+product_tuple = []
+for i in tuples:
+    product_tuple.append(i)
+
+products = ["Product List"]
+for i, p in product_tuple:
+    product = str(i) + "   " + str(p)
+
+    products.append(product)
+
+
+# Adding combobox drop down list
+ProductList['values'] = products
+
+ProductList.place(x=230, y=130)
+ProductList.current(0)
 
 
 # create the quantity and the discount label
@@ -301,7 +328,7 @@ discount_e.insert(END, 0)
 
 # add to cart button
 add_to_cart_btn = Button(
-    left, text="Add To Cart", width=22, height=2, bg='orange', command=add_to_cart)
+    left, text="Add To Cart", width=22, height=2, bg='green', fg="white", activebackground='white', activeforeground='black', command=add_to_cart)
 add_to_cart_btn.place(x=350, y=450)
 
 # generate bill and change
@@ -311,11 +338,11 @@ change_l.place(x=0, y=550)
 
 change_e = Entry(left, width=25, font=(
     'arial 18 bold'), bg='orange')
-change_e.place(x=170, y=550)
+change_e.place(x=200, y=550)
 
 # button change
 change_btn = Button(left, text="Calculate Change",
-                    width=22, height=2, bg='orange', command=change_func)
+                    width=22, height=2, bg='green', fg="white", activebackground='white', activeforeground='black', command=change_func)
 change_btn.place(x=360, y=590)
 
 # generate bill button
@@ -368,6 +395,31 @@ def get_items():
                     " into the database with code " + str(id_e.get()))
         tkinter.messagebox.showinfo(
             "Success", "Successfully added to the database")
+
+        n = StringVar()
+        ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
+        ProductList2 = ttk.Combobox(frame2, width=18, textvariable=n)
+        products = []
+        c.execute("SELECT id, name from inventory")
+
+        tuples = c.fetchall()
+        product_tuple = []
+        for i in tuples:
+            product_tuple.append(i)
+
+        products = ["Product List"]
+        for i, p in product_tuple:
+            product = str(i) + "   " + str(p)
+            products.append(product)
+        # Adding combobox drop down list
+        ProductList['values'] = products
+        ProductList2['values'] = products
+
+        ProductList2.place(x=150, y=80)
+        ProductList2.current(0)
+
+        ProductList.place(x=230, y=130)
+        ProductList.current(0)
 
 
 def clear_all():
@@ -534,6 +586,25 @@ def update():
     conn.commit()
     tkinter.messagebox.showinfo("Success", "Update database Successful")
 
+    global products
+    products = []
+    c.execute("SELECT id, name from inventory")
+
+    tuples = c.fetchall()
+    product_tuple = []
+    for i in tuples:
+        product_tuple.append(i)
+
+    products = ["Product List"]
+    for i, p in product_tuple:
+        product = str(i) + "   " + str(p)
+        products.append(product)
+    # Adding combobox drop down list
+    ProductList['values'] = products
+
+    ProductList.place(x=150, y=80)
+    ProductList.current(0)
+
 
 result = c.execute("SELECT Max(id) from inventory")
 for r in result:
@@ -550,6 +621,31 @@ id_le.place(x=0, y=70)
 
 id_leb = Entry(frame3, font=('arial 18 bold'), width=10)
 id_leb.place(x=380, y=70)
+
+# Combobox creation
+n = StringVar()
+ProductList = ttk.Combobox(frame3, width=18, textvariable=n)
+
+products = []
+c.execute("SELECT id, name from inventory")
+
+tuples = c.fetchall()
+product_tuple = []
+for i in tuples:
+    product_tuple.append(i)
+
+products = ["Product List"]
+for i, p in product_tuple:
+    product = str(i) + "   " + str(p)
+
+    products.append(product)
+
+
+# Adding combobox drop down list
+ProductList['values'] = products
+
+ProductList.place(x=150, y=80)
+ProductList.current(0)
 
 btn_search = Button(frame3, text="Search", width=15,
                     height=2, bg='orange', command=search)
@@ -635,8 +731,8 @@ Username = "admin"
 Password = "admin"
 
 
-def auth_login(Username, Password):
-    if Username == "admin" and Password == "admin":
+def auth_login(Uname, Passwd):
+    if Uname == Username and Passwd == Password:
         show_frame(frame1)
     else:
         tkinter.messagebox.showinfo(
