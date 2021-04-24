@@ -279,7 +279,7 @@ frame1.bind("<Return>", ajax)
 frame1.bind("<Up>", add_to_cart)
 frame1.bind("<space>", generate_bill)
 
-Prod_List= Label(frame1,text="Product list : ",font=('arial 16 bold'))
+Prod_List= Label(frame1,text="Product list : ",font=('arial 16 bold'), bg='floral white')
 Prod_List.place(x=90,y=120)
 # Combobox creation
 n = StringVar()
@@ -399,6 +399,7 @@ def get_items():
         n = StringVar()
         ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
         ProductList2 = ttk.Combobox(frame2, width=18, textvariable=n)
+        ProductList3 = ttk.Combobox(frame3, width=18, textvariable=n)
         products = []
         c.execute("SELECT id, name from inventory")
 
@@ -414,11 +415,15 @@ def get_items():
         # Adding combobox drop down list
         ProductList['values'] = products
         ProductList2['values'] = products
+        ProductList3['values'] = products
 
-        ProductList2.place(x=150, y=80)
+        ProductList3.place(x=200, y=80)
+        ProductList3.current(0)
+
+        ProductList2.place(x=240, y=80)
         ProductList2.current(0)
 
-        ProductList.place(x=230, y=130)
+        ProductList.place(x=250, y=125)
         ProductList.current(0)
 
 
