@@ -282,7 +282,7 @@ frame1.bind("<space>", generate_bill)
 
 # Combobox creation
 n = StringVar()
-ProductList = ttk.Combobox(frame2, width=18, textvariable=n)
+ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
 
 products = []
 c.execute("SELECT id, name from inventory")
@@ -302,7 +302,7 @@ for i, p in product_tuple:
 # Adding combobox drop down list
 ProductList['values'] = products
 
-ProductList.place(x=250, y=80)
+ProductList.place(x=250, y=120)
 ProductList.current(0)
 
 
@@ -504,7 +504,7 @@ frame2.bind('<Up>', clear_all)
 
 # Combobox creation
 n = StringVar()
-ProductList3 = ttk.Combobox(frame3, width=18, textvariable=n)
+ProductList3 = ttk.Combobox(frame2, width=18, textvariable=n)
 
 products = []
 c.execute("SELECT id, name from inventory")
@@ -524,7 +524,7 @@ for i, p in product_tuple:
 # Adding combobox drop down list
 ProductList3['values'] = products
 
-ProductList3.place(x=100, y=80)
+ProductList3.place(x=240, y=80)
 ProductList3.current(0)
 
 
@@ -632,13 +632,13 @@ def update():
     ProductList2['values'] = products
     ProductList3['values'] = products
 
-    ProductList3.place(x=150, y=80)
+    ProductList3.place(x=200, y=80)
     ProductList3.current(0)
 
-    ProductList2.place(x=150, y=80)
+    ProductList2.place(x=240, y=80)
     ProductList2.current(0)
 
-    ProductList.place(x=230, y=130)
+    ProductList.place(x=250, y=120)
     ProductList.current(0)
 
 
@@ -673,14 +673,13 @@ for i in tuples:
 products = ["Product List"]
 for i, p in product_tuple:
     product = str(i) + "   " + str(p)
-
     products.append(product)
 
 
 # Adding combobox drop down list
 ProductList['values'] = products
 
-ProductList.place(x=150, y=80)
+ProductList.place(x=200, y=80)
 ProductList.current(0)
 
 btn_search = Button(frame3, text="Search", width=15,
