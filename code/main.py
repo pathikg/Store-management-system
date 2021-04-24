@@ -282,7 +282,7 @@ frame1.bind("<space>", generate_bill)
 
 # Combobox creation
 n = StringVar()
-ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
+ProductList = ttk.Combobox(frame2, width=18, textvariable=n)
 
 products = []
 c.execute("SELECT id, name from inventory")
@@ -302,7 +302,7 @@ for i, p in product_tuple:
 # Adding combobox drop down list
 ProductList['values'] = products
 
-ProductList.place(x=230, y=130)
+ProductList.place(x=250, y=80)
 ProductList.current(0)
 
 
@@ -502,6 +502,31 @@ tBox.insert(END, "ID has reached upto: " + str(id))
 frame2.bind('<Return>', get_items)
 frame2.bind('<Up>', clear_all)
 
+# Combobox creation
+n = StringVar()
+ProductList3 = ttk.Combobox(frame3, width=18, textvariable=n)
+
+products = []
+c.execute("SELECT id, name from inventory")
+
+tuples = c.fetchall()
+product_tuple = []
+for i in tuples:
+    product_tuple.append(i)
+
+products = ["Product List"]
+for i, p in product_tuple:
+    product = str(i) + "   " + str(p)
+
+    products.append(product)
+
+
+# Adding combobox drop down list
+ProductList3['values'] = products
+
+ProductList3.place(x=100, y=80)
+ProductList3.current(0)
+
 
 home_btn = Button(frame2, text="Home",
                   height=2, bg='green', fg='white', command=lambda: show_frame(frame1))
@@ -586,7 +611,10 @@ def update():
     conn.commit()
     tkinter.messagebox.showinfo("Success", "Update database Successful")
 
-    global products
+    n = StringVar()
+    ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
+    ProductList2 = ttk.Combobox(frame2, width=18, textvariable=n)
+    ProductList3 = ttk.Combobox(frame3, width=18, textvariable=n)
     products = []
     c.execute("SELECT id, name from inventory")
 
@@ -601,8 +629,16 @@ def update():
         products.append(product)
     # Adding combobox drop down list
     ProductList['values'] = products
+    ProductList2['values'] = products
+    ProductList3['values'] = products
 
-    ProductList.place(x=150, y=80)
+    ProductList3.place(x=150, y=80)
+    ProductList3.current(0)
+
+    ProductList2.place(x=150, y=80)
+    ProductList2.current(0)
+
+    ProductList.place(x=230, y=130)
     ProductList.current(0)
 
 
