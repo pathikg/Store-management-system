@@ -5,7 +5,6 @@ from tkinter import ttk
 import sqlite3
 import tkinter.messagebox
 import datetime
-import math
 import os
 import random
 
