@@ -304,6 +304,7 @@ ProductList['values'] = products
 
 ProductList.place(x=250, y=120)
 ProductList.current(0)
+ProductList.set('Product List')
 
 
 # create the quantity and the discount label
