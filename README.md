@@ -1,7 +1,5 @@
 
 <h1 align="center">KJ Mart</h1>
-
-
 ---
 <div align="center">
   <br>
@@ -21,10 +19,13 @@
 ---
 
 ## Snapshots of the project :
+
 Landing Page
 ![img](Screenshots/Picture1.png)
+
 Update the products
 ![img](Screenshots/Picture2.png) 
+
 Add a new productto the database
 ![img](Screenshots/Picture3.png)  
 
