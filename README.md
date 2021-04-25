@@ -1,7 +1,14 @@
-# Store-management-system
-Python application for a store to manage the bills and handle the sales of there products
+
+<h1 align="center">KJ Mart</h1>
+---
 
 
+<div align="center">
+  <br>
+  <h2>Store-management-system</h2>
+  <h3>Python application for a store to manage the bills and handle the sales of there products</h3>
+</div>
+---
 ## Functionalities
 1. Add as many products to database
 2. Update info about products as per your choice 
@@ -9,9 +16,14 @@ Python application for a store to manage the bills and handle the sales of there
 4. Generate & save bills
 5. Print bills
 6. Notifies less stock in database 
-7. Compiles so that it can run on any windows platform without having python installed
+---
+-Snapshots of the project :
 
+![img](Screenshots/Picture1.png)  
+![img](Screenshots/Picture2.png)  
+![img](Screenshots/Picture3.png)  
 
+---
 ### Installation
 
 - Install dependencies
@@ -19,7 +31,8 @@ Python application for a store to manage the bills and handle the sales of there
 ```sh
         $ pip3 install -r requirements.txt
 ```
-
+---
 <h4 align="center"><b>Developed with :heart: by 
 <a href="https://github.com/rushabhgandhi13">Rushabh Gandhi</a> and <a href="https://github.com/Patrickbro13">Pathik Ghugare</a></b> , 
 </h4>
+---
