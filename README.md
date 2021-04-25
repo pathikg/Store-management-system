@@ -27,7 +27,7 @@ Landing Page
 Update the products
 ![img](Screenshots/Picture2.png) 
 
-Add a new productto the database
+Add a new product the database
 ![img](Screenshots/Picture3.png)  
 
 ---
