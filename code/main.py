@@ -163,9 +163,13 @@ def generate_bill():
     table_header = "\n\n\t\t\t---------------------------------------\n\t\t\tSN.\tProducts\t\tQty\t\tAmount\n\t\t\t---------------------------------------"
     final = company + address + phone + sample + dt + "\n" + table_header
 
+    tresult = c.execute("SELECT Max(id) from transactions")
+    for r in tresult:
+        tid = r[0]
+
     # open a file to write it to
     file_name = str(directory) + \
-        str(random.randrange(5000, 10000)) + ".rtf"
+        str(tid+1) + ".rtf"
     f = open(file_name, 'w')
     f.write(final)
 
@@ -816,7 +820,11 @@ def auth_login(Uname, Passwd):
 canvas = Canvas(frame4, width=725, height=384)
 canvas.place(x=335, y=140)
 
-canvas.create_rectangle(0, 0, 725, 700, fill="orange", outline="white")
+canvas.create_rectangle(0, 0, 725, 700, fill='orange', outline="white")
+
+heading = Label(frame4, text="KJ Mart",
+                font=('arial 52 bold'), fg='white', bg="orange")
+heading.place(x=550, y=50)
 
 heading = Label(frame4, text="Login",
                 font=('arial 40 bold'), fg='white', bg="orange")
