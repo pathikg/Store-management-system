@@ -21,9 +21,11 @@
 ---
 
 ## Snapshots of the project :
-
-![img](Screenshots/Picture1.png)  
-![img](Screenshots/Picture2.png)  
+Landing Page
+![img](Screenshots/Picture1.png)
+Update the products
+![img](Screenshots/Picture2.png) 
+Add a new productto the database
 ![img](Screenshots/Picture3.png)  
 
 ---
