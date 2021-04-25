@@ -7,6 +7,7 @@ import tkinter.messagebox
 import datetime
 import os
 import random
+import re
 
 
 DB_path = os.getcwd() + "\\Database\\store.db"
@@ -416,8 +417,8 @@ def get_items():
             # textbox insert
 
             tBox2.config(text="ID has reached upto: " + str(id)+"\n\nInserted " + str(name) +
-                         " into the database with code " + str(id_e.get()))
-            tBox3.config(text="ID has reached upto: " + str(id))
+                         " into the database with code " + str(id_e.get()),bg="white")
+            tBox3.config(text="ID has reached upto: " + str(id),bg="white")
 
             tkinter.messagebox.showinfo(
                 "Success", "Successfully added to the database")
@@ -530,7 +531,7 @@ btn_clear.place(x=350, y=420)
 # text box for the logs
 tBox2 = Label(frame2, width=60, height=18)
 tBox2.place(x=750, y=70)
-tBox2.config(text="ID has reached upto: " + str(id))
+tBox2.config(text="ID has reached upto: " + str(id),bg="white")
 
 frame2.bind('<Return>', get_items)
 frame2.bind('<Up>', clear_all)
@@ -783,7 +784,8 @@ btn_add.place(x=520, y=520)
 # text box for the logs
 tBox3 = Label(frame3, width=60, height=18)
 tBox3.place(x=750, y=70)
-tBox3.config(text="ID has reached upto: " + str(id))
+tBox3.config(text="ID has reached upto: " + str(id),bg="white")
+
 
 home_btn = Button(frame3, text="Home",
                   height=2, bg='green', fg='white', command=lambda: show_frame(frame1))
