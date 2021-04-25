@@ -529,7 +529,7 @@ btn_clear = Button(frame2, text="Clear All Fields", width=18,
 btn_clear.place(x=350, y=420)
 
 # text box for the logs
-tBox2 = Label(frame2, width=60, height=18)
+tBox2 = Label(frame2, width=60, height=18,font=('arial 12 bold'))
 tBox2.place(x=750, y=70)
 tBox2.config(text="ID has reached upto: " + str(id),bg="white")
 
@@ -782,7 +782,7 @@ btn_add = Button(frame3, text="Update Database", width=25,
 btn_add.place(x=520, y=520)
 
 # text box for the logs
-tBox3 = Label(frame3, width=60, height=18)
+tBox3 = Label(frame3, width=60, height=18,font=('arial 12 bold'))
 tBox3.place(x=750, y=70)
 tBox3.config(text="ID has reached upto: " + str(id),bg="white")
 
