@@ -20,7 +20,7 @@
 6. Notifies less stock in database 
 ---
 
-#Snapshots of the project :
+## Snapshots of the project :
 
 ![img](Screenshots/Picture1.png)  
 ![img](Screenshots/Picture2.png)  
