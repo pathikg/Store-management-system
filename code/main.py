@@ -169,7 +169,7 @@ def generate_bill():
 
     # open a file to write it to
     file_name = str(directory) + \
-        str(tid+1) + ".rtf"
+        str(tid) + ".rtf"
     f = open(file_name, 'w')
     f.write(final)
 
@@ -421,8 +421,8 @@ def get_items():
             # textbox insert
 
             tBox2.config(text="ID has reached upto: " + str(id)+"\n\nInserted " + str(name) +
-                         " into the database with code " + str(id_e.get()),bg="white")
-            tBox3.config(text="ID has reached upto: " + str(id),bg="white")
+                         " into the database with code " + str(id_e.get()), bg="white")
+            tBox3.config(text="ID has reached upto: " + str(id), bg="white")
 
             tkinter.messagebox.showinfo(
                 "Success", "Successfully added to the database")
@@ -533,9 +533,9 @@ btn_clear = Button(frame2, text="Clear All Fields", width=18,
 btn_clear.place(x=350, y=420)
 
 # text box for the logs
-tBox2 = Label(frame2, width=60, height=18,font=('arial 12 bold'))
+tBox2 = Label(frame2, width=60, height=18, font=('arial 12 bold'))
 tBox2.place(x=750, y=70)
-tBox2.config(text="ID has reached upto: " + str(id),bg="white")
+tBox2.config(text="ID has reached upto: " + str(id), bg="white")
 
 frame2.bind('<Return>', get_items)
 frame2.bind('<Up>', clear_all)
@@ -643,7 +643,8 @@ def update():
         u5 = totalcp_e.get()
         Mysp = int(totalsp_e.get())
         # u6 = (int(totalcp_e.get()) / int(cp_e.get()) ) * int(sp_e.get())
-        u6 = (Mysp / (int(totalcp_e.get()) / int(cp3_e.get()))) * ((int(totalcp_e.get()) /int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
+        u6 = (Mysp / (int(totalcp_e.get()) / int(cp3_e.get()))) * ((int(totalcp_e.get()) /
+                                                                    int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
         u7 = vendor3_e.get()
         query = "UPDATE inventory SET name=?, stock=?, cp=?, sp=?, totalcp=?, totalsp=?, vendor=?, vendor_phoneno=? WHERE id=?"
         c.execute(query, (u1, u2, u3, u4, u5, u6, u7, u8, id_leb.get()))
@@ -785,9 +786,9 @@ btn_add = Button(frame3, text="Update Database", width=25,
 btn_add.place(x=520, y=520)
 
 # text box for the logs
-tBox3 = Label(frame3, width=60, height=18,font=('arial 12 bold'))
+tBox3 = Label(frame3, width=60, height=18, font=('arial 12 bold'))
 tBox3.place(x=750, y=70)
-tBox3.config(text="ID has reached upto: " + str(id),bg="white")
+tBox3.config(text="ID has reached upto: " + str(id), bg="white")
 
 
 home_btn = Button(frame3, text="Home",
