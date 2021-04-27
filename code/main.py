@@ -1,5 +1,4 @@
 # import all the modules
-import matplotlib
 from tkinter import *
 from tkinter import ttk
 import sqlite3
@@ -17,9 +16,6 @@ c = conn.cursor()
 
 # date
 date = datetime.datetime.now().date()
-
-
-matplotlib.use('Agg')
 
 
 def show_frame(frame):
@@ -184,7 +180,8 @@ def generate_bill():
         r += 1
     f.write("\n\n\t\t\tTotal: Rs. " + str(sum(product_price)))
     f.write("\n\t\t\tThanks for Visiting.")
-    os.startfile(file_name)
+    os.startfile(file_name, "print")
+    
     f.close()
     # decrease the stock
     x = 0
@@ -299,9 +296,8 @@ ProductList = ttk.Combobox(frame1, width=18, textvariable=n)
 c.execute("SELECT id, name from inventory")
 
 tuples = c.fetchall()
-product_tuple = []
-for i in tuples:
-    product_tuple.append(i)
+product_tuple = [i for i in tuples]
+
 
 products = ["Product List"]
 for i, p in product_tuple:
@@ -440,9 +436,7 @@ def get_items():
             c.execute("SELECT id, name from inventory")
 
             tuples = c.fetchall()
-            product_tuple = []
-            for i in tuples:
-                product_tuple.append(i)
+            product_tuple = [i for i in tuples]
 
             products = ["Product List"]
             for i, p in product_tuple:
@@ -667,9 +661,7 @@ def update():
         c.execute("SELECT id, name from inventory")
 
         tuples = c.fetchall()
-        product_tuple = []
-        for i in tuples:
-            product_tuple.append(i)
+        product_tuple = [i for i in tuples]
 
         products = ["Product List"]
         for i, p in product_tuple:
