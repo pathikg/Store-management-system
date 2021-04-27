@@ -652,8 +652,7 @@ def update():
         u5 = totalcp_e.get()
         Mysp = int(totalsp_e.get())
         # u6 = (int(totalcp_e.get()) / int(cp_e.get()) ) * int(sp_e.get())
-        u6 = (Mysp / (int(totalcp_e.get()) / int(cp3_e.get()))) * ((int(totalcp_e.get()) /
-                                                                    int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
+        u6 = (Mysp / (int(totalcp_e.get()) / int(cp3_e.get()))) * ((int(totalcp_e.get()) /int(cp3_e.get())) - int(stock3_e.get())) + int(sp3_e.get()) * int(stock3_e.get())
         u7 = vendor3_e.get()
         query = "UPDATE inventory SET name=?, stock=?, cp=?, sp=?, totalcp=?, totalsp=?, vendor=?, vendor_phoneno=? WHERE id=?"
         c.execute(query, (u1, u2, u3, u4, u5, u6, u7, u8, id_leb.get()))
