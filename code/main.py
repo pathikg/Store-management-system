@@ -17,14 +17,13 @@ c = conn.cursor()
 # date
 date = datetime.datetime.now().date()
 
-
 def show_frame(frame):
     frame.tkraise()
 
 
 root = Tk()
 root.geometry("1366x768+0+0")
-root.title("Store management System")
+root.title("KJ Mart-Store management System")
 root.resizable(width=False, height=False)
 root.rowconfigure(0, weight=1)
 root.columnconfigure(0, weight=1)
@@ -132,12 +131,10 @@ def add_to_cart():
                 text="Total: Rs." + str(sum(product_price)))
 
             # delete
-            # discount_e.delete(0, END)
-            # quantity_e.delete(0, END)
             productname.configure(text="")
             pprice.configure(text="")
 
-            # autofocus to the enter id
+            # Removes all the previous entries
             enteride.focus()
             enteride.delete(0, END)
 
