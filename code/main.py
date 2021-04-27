@@ -160,12 +160,13 @@ def generate_bill():
     sample = "\t\t\t\t\tInvoice\n"
     dt = "\t\t\t\t\t" + str(date)
 
-    table_header = "\n\n\t\t\t---------------------------------------\n\t\t\tSN.\tProducts\t\tQty\t\tAmount\n\t\t\t---------------------------------------"
-    final = company + address + phone + sample + dt + "\n" + table_header
-
     tresult = c.execute("SELECT Max(id) from transactions")
     for r in tresult:
         tid = r[0]
+    bill_num = "\n\n\t\t\t" + "Bill number : " + str(tid)
+
+    table_header = "\n\n\t\t\t---------------------------------------\n\t\t\tSN.\tProducts\t\tQty\t\tAmount\n\t\t\t---------------------------------------"
+    final = company + address + phone + sample + dt + bill_num + "\n" + table_header
 
     # open a file to write it to
     file_name = str(directory) + \
@@ -375,6 +376,10 @@ add_btn = Button(left, text="Add products",
                  height=2, bg='green', fg='white', command=lambda: show_frame(frame2))
 add_btn.place(x=150, y=690)
 
+logout_btn1 = Button(left, text="Logout",
+                     height=2, bg='green', fg='white', command=lambda: show_frame(frame4))
+logout_btn1.place(x=300, y=690)
+
 
 # --------------------------------------------Add to database----------------------------------------
 # functions in frame 2
@@ -574,6 +579,10 @@ home_btn.place(x=30, y=690)
 update_btn = Button(frame2, text="Update products",
                     height=2, bg='green', fg='white', command=lambda: show_frame(frame3))
 update_btn.place(x=150, y=690)
+
+logout_btn2 = Button(frame2, text="Logout",
+                     height=2, bg='green', fg='white', command=lambda: show_frame(frame4))
+logout_btn2.place(x=300, y=690)
 
 # --------------------------------------------Update database----------------------------------------
 
@@ -800,6 +809,9 @@ add_btn = Button(frame3, text="Add products",
                  height=2, bg='green', fg='white', command=lambda: show_frame(frame2))
 add_btn.place(x=150, y=690)
 
+logout_btn3 = Button(frame3, text="Logout",
+                     height=2, bg='green', fg='white', command=lambda: show_frame(frame4))
+logout_btn3.place(x=300, y=690)
 
 # --------------------------------------------Login----------------------------------------
 
@@ -812,6 +824,8 @@ Password = "admin"
 def auth_login(Uname, Passwd):
     if Uname == Username and Passwd == Password:
         show_frame(frame1)
+        Uname_e.delete(0, END)
+        Passwd_e.delete(0, END)
     else:
         tkinter.messagebox.showinfo(
             "Error", "Incorrect login Credentials")
